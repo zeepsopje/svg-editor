@@ -8,13 +8,15 @@
 	} from '$lib/canvas-store';
 
 	function onMouseDown(e) {
-		const x = e.offsetX;
-		const y = e.offsetY;
+		if ($store.tool === 'pen-tool') {
+			const x = e.offsetX;
+			const y = e.offsetY;
 
-		if ($canvasStore.lock) {
-			continuePath(x, y, $canvasStore.lock);
-		} else {
-			setLock(beginPath(e.offsetX, e.offsetY));
+			if ($canvasStore.lock) {
+				continuePath(x, y, $canvasStore.lock);
+			} else {
+				setLock(beginPath(e.offsetX, e.offsetY));
+			}
 		}
 	}
 
