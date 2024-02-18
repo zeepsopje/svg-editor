@@ -1,6 +1,6 @@
 <script>
 	import * as Icon from 'svelticon/feather';
-	import store, { setTool } from '$lib/store';
+	import store, { setTool } from '$lib/global-store';
 	import tools from '$lib/data/tools.json';
 </script>
 

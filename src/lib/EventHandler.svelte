@@ -8,7 +8,10 @@
 		setKey,
 		unsetKey,
 		setTool,
-	} from '$lib/store.js';
+	} from '$lib/global-store';
+	import canvasStore, {
+		releaseLock,
+	} from '$lib/canvas-store.js';
 
 	let lastTool = $store.tool;
 
@@ -16,6 +19,10 @@
 		if (e.code === 'Space' && !key('Space')) {
 			lastTool = $store.tool;
 			setTool('move')
+		}
+
+		if (e.code === 'Escape') {
+			releaseLock();
 		}
 
 		if ([

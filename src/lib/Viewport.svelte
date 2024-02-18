@@ -6,7 +6,7 @@
 		zoomOut,
 		key,
 		isMouseDown,
-	} from './store';
+	} from '$lib/global-store';
 
 	$: cursor = isMouseDown()
 		? tools[$store.tool].cursorMouseDown
