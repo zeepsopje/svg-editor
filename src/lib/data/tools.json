@@ -1,0 +1,20 @@
+{
+	"pointer": {
+		"icon": "MousePointer",
+		"label": "Pointer",
+		"description": "Select and transform elements",
+		"cursor": "default"
+	},
+	"move": {
+		"icon": "Move",
+		"label": "Move",
+		"description": "Move the view",
+		"cursor": "grab",
+		"cursorMouseDown": "grabbing"
+	},
+	"pen-tool": {
+		"icon": "PenTool",
+		"label": "Pen tool",
+		"description": "Draw a path"
+	}
+}

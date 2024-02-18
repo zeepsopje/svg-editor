@@ -7,10 +7,16 @@
 		key,
 		setKey,
 		unsetKey,
+		setTool,
 	} from '$lib/store.js';
 
+	let lastTool = $store.tool;
+
 	function onKeyDown(e) {
-		setKey(e.code);
+		if (e.code === 'Space' && !key('Space')) {
+			lastTool = $store.tool;
+			setTool('move')
+		}
 
 		if ([
 			'Digit0',
@@ -42,10 +48,16 @@
 				zoomIn();
 			}
 		}
+
+		setKey(e.code);
 	}
 
 	function onKeyUp(e) {
 		unsetKey(e.code);
+
+		if (e.code === 'Space') {
+			setTool(lastTool);
+		}
 	}
 
 	function onMouseDown(e) {

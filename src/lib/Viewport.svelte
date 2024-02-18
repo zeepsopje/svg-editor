@@ -1,12 +1,16 @@
 <script>
-    import { onMount } from 'svelte';
 	import { Canvas } from './';
+	import tools from './data/tools.json';
 	import store, {
 		zoomIn,
 		zoomOut,
 		key,
 		isMouseDown,
 	} from './store';
+
+	$: cursor = isMouseDown()
+		? tools[$store.tool].cursorMouseDown
+		: tools[$store.tool].cursor;
 
 	let offsetX = 0;
 	let offsetY = 0;
@@ -19,14 +23,11 @@
 	}
 
 	function onMouseMove(e) {
-		if (key('Space') && isMouseDown()) {
+		if ($store.tool === 'move' && isMouseDown()) {
 			offsetX += e.movementX;
 			offsetY += e.movementY;
 		}
 	}
-
-	onMount(() => {
-	});
 </script>
 
 <div
@@ -34,6 +35,7 @@
 	on:wheel={onWheel}
 	on:mousemove={onMouseMove}
 	style="--zoom: {$store.zoom}%"
+	style:cursor
 >
 	<div
 		class="bounds"

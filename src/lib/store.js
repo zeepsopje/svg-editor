@@ -6,6 +6,7 @@ const store = writable({
 	zoom: 100,
 	keysDown: {},
 	mouseDown: false,
+	tool: 'pointer',
 });
 
 export function zoomOut() {
@@ -63,6 +64,10 @@ export function unsetKey(code) {
 
 export function isMouseDown() {
 	return get(store).mouseDown;
+}
+
+export function setTool(tool) {
+	store.update(s => ({ ...s, tool }))
 }
 
 export default store;
