@@ -11,10 +11,13 @@
 		zoomOut,
 		zoomIn,
 		setZoom,
+		key,
+		setKey,
+		unsetKey,
 	} from '$lib/store.js';
 
 	function onKeyDown(e) {
-		$store.keysDown[e.code] = true;
+		setKey(e.code);
 
 		// Handle zooming
 		if ([
@@ -37,7 +40,7 @@
 		}
 
 		// Ctrl prefix
-		if ($store.keysDown['ControlLeft']) {
+		if (key('ControlLeft')) {
 			// -
 			if (e.code === 'Minus') {
 				e.preventDefault();
@@ -52,7 +55,7 @@
 	}
 
 	function onKeyUp(e) {
-		$store.keysDown[e.code] = false;
+		unsetKey(e.code);
 	}
 
 	function onMouseDown(e) {
@@ -64,7 +67,7 @@
 	}
 
 	function onWheel(e) {
-		if ($store.keysDown['ControlLeft']) {
+		if (key('ControlLeft')) {
 			e.preventDefault();
 		}
 	}
@@ -93,12 +96,11 @@
 		height: 100vh;
 		display: grid;
 		background-color: #eee;
-		grid-template-columns: 1fr 250px;
-		grid-template-rows: 70px 1fr 70px;
+		grid-template-columns: 70px 1fr 250px;
+		grid-template-rows: 70px 1fr;
 		gap: 2px;
 		grid-template-areas: 
-		"header header"
-		"viewport sidebar"
-		"toolbar toolbar";
+		"header header header"
+		"toolbar viewport sidebar"
 	}
 </style>

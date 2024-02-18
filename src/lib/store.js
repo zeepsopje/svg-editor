@@ -43,6 +43,24 @@ export function key(code) {
 	return get(store).keysDown[code];
 }
 
+export function setKey(code) {
+	store.update(s => {
+		const keysDown = s.keysDown;
+		keysDown[code] = true;
+
+		return { ...s, keysDown };
+	});
+}
+
+export function unsetKey(code) {
+	store.update(s => {
+		const keysDown = s.keysDown;
+		keysDown[code] = false;
+
+		return { ...s, keysDown };
+	});
+}
+
 export function isMouseDown() {
 	return get(store).mouseDown;
 }
