@@ -1,5 +1,6 @@
 <script>
 	import '../global.css';
+	import { onMount } from 'svelte';
 	import {
 		Viewport,
 		Sidebar,
@@ -35,11 +36,14 @@
 			}
 		}
 
+		// Ctrl prefix
 		if ($store.keysDown['ControlLeft']) {
+			// -
 			if (e.code === 'Minus') {
 				e.preventDefault();
 				zoomOut();
 			}
+			// +
 			if (e.code === 'Equal') {
 				e.preventDefault();
 				zoomIn();
@@ -58,6 +62,16 @@
 	function onMouseUp(e) {
 		$store.mouseDown = false;
 	}
+
+	function onWheel(e) {
+		if ($store.keysDown['ControlLeft']) {
+			e.preventDefault();
+		}
+	}
+
+	onMount(() => {
+		window.addEventListener('wheel', onWheel, { passive: false });
+	});
 </script>
 
 <svelte:window
