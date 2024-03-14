@@ -11,6 +11,7 @@
 	} from '$lib/global-store';
 	import canvasStore, {
 		releaseLock,
+		deleteElement,
 	} from '$lib/canvas-store.js';
 
 	let lastTool = $store.tool;
@@ -22,6 +23,9 @@
 		}
 
 		if (e.code === 'Escape') {
+			if ($canvasStore.elements.get($canvasStore.lock)?.vertices.length === 1) {
+				deleteElement($canvasStore.lock);
+			}
 			releaseLock();
 		}
 

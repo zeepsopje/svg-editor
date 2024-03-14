@@ -63,7 +63,7 @@
 		justify-content: center;
 	}
 
-	:global(svg) {
+	:global(.canvas) {
 		transform: scale(var(--zoom));
 	}
 </style>

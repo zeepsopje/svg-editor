@@ -1,49 +1,37 @@
 <script>
-	import { Element } from '$lib';
+	import { Element, InteractionPlane } from '$lib';
 	import store from '$lib/global-store';
-	import canvasStore, {
-		beginPath,
-		continuePath,
-		setLock,
-	} from '$lib/canvas-store';
-
-	function onMouseDown(e) {
-		if ($store.tool === 'pen-tool') {
-			const x = e.offsetX;
-			const y = e.offsetY;
-
-			if ($canvasStore.lock) {
-				continuePath(x, y, $canvasStore.lock);
-			} else {
-				setLock(beginPath(e.offsetX, e.offsetY));
-			}
-		}
-	}
-
-	function onMouseUp(e) {
-	}
-
-	function onMouseMove(e) {
-	}
+	import canvasStore from '$lib/canvas-store';
 </script>
 
-<svg
-	width={$store.canvasWidth}
-	height={$store.canvasHeight}
-	stroke="#000"
-	on:mousedown={onMouseDown}
-	on:mousedown={onMouseUp}
-	on:mousemove={onMouseMove}
->
-	{#each $canvasStore.elements as [key, element]}
-		{@html element.toString()}
-	{/each}
-</svg>
-
-{#each $canvasStore.elements as [key, element]}
-{/each}
+<div class="canvas">
+	<svg
+		width={$store.canvasWidth}
+		height={$store.canvasHeight}
+		stroke="#000"
+	>
+		{#each $canvasStore.elements as [key, element]}
+			{@html element.toString()}
+		{/each}
+	</svg>
+	<div class="overlay">
+		<InteractionPlane />
+	</div>
+</div>
 
 <style>
+	.canvas {
+		position: relative;
+	}
+
+	.overlay {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+	}
+
 	svg {
 		background-color: #fff;
 	}

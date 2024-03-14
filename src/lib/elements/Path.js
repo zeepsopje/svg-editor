@@ -1,9 +1,17 @@
+/**
+ * Constructor for Path.
+ *
+ * @constructor
+ */
 function Path(sx, sy) {
 	this.vertices = [[sx, sy]];
 	this.stroke = '#000';
 	this.fill = 'none';
 }
 
+/**
+ * Translate this path to a SVG readable path string
+ */
 Path.prototype.toString = function() {
 	let d = [];
 
@@ -24,6 +32,9 @@ Path.prototype.toString = function() {
 	return `<path d="${d.join(' ')}" ${props} />`;
 }
 
+/**
+ * Add a vertex to this path.
+ */
 Path.prototype.add = function(x, y) {
 	this.vertices.push([x, y]);
 }

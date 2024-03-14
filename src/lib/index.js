@@ -5,6 +5,7 @@ import Toolbar from './Toolbar.svelte';
 import Header from './Header.svelte';
 import Canvas from './Canvas.svelte';
 import Element from './Element.svelte';
+import InteractionPlane from './InteractionPlane.svelte';
 
 export {
 	EventHandler,
@@ -14,4 +15,5 @@ export {
 	Header,
 	Canvas,
 	Element,
+	InteractionPlane,
 };
