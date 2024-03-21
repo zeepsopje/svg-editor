@@ -15,15 +15,6 @@
 	let mouseY;
 	let hovering = false;
 
-	// canvasStore.subscribe(() => {
-	// 	for (const element of $canvasStore.elements.values()) {
-	// 		if (element instanceof Path) {
-	// 			for (const vertex of element.vertices) {
-	// 			}
-	// 		}
-	// 	}
-	// });
-
 	function onMouseDown(e) {
 		if ($store.tool === 'pen-tool') {
 			const x = e.offsetX;
